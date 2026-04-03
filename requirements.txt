@@ -1,0 +1,8 @@
+fastapi==0.104.1
+uvicorn==0.24.0
+opencv-python==4.8.1.78
+numpy==1.24.3
+requests==2.31.0
+bleak==0.21.1
+ultralytics==8.0.221
+pillow==10.1.0

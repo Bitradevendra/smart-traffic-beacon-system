@@ -1,0 +1,4 @@
+{
+  "name": "Smart Traffic Beacon System",
+  "description": "A dashboard monitoring a smart toy car tracking system. It interfaces with a Python backend that processes ESP32-CAM video feeds using YOLO for car counting and tracks an ESP32 BLE Beacon for proximity-based lighting control."
+}

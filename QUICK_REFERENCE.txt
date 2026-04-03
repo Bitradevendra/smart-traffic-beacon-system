@@ -1,0 +1,149 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                  SMART TRAFFIC BEACON SYSTEM - QUICK REFERENCE                ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 🚀 START THE SYSTEM                                                          │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  EASIEST:  Double-click START_SYSTEM.bat                                    │
+│                                                                              │
+│  MANUAL:   Terminal 1: cd server && python main.py                          │
+│            Terminal 2: npm run dev                                           │
+│                                                                              │
+│  THEN:     Connect to ESP32-CAM WiFi                                         │
+│            Open: http://localhost:3000                                       │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 🛑 STOP THE SYSTEM                                                           │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  EASIEST:  Double-click STOP_SYSTEM.bat                                     │
+│                                                                              │
+│  MANUAL:   Get-Process python | Stop-Process -Force                         │
+│            Get-Process node | Stop-Process -Force                           │
+│                                                                              │
+│  OR:       Press Ctrl+C in each terminal window                             │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 🔍 CHECK STATUS                                                              │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  Is it running?     Get-Process python, node                                │
+│                                                                              │
+│  Python logs:       (Check terminal running python main.py)                 │
+│                                                                              │
+│  Web interface:     http://localhost:3000                                   │
+│  API endpoint:      http://localhost:8000/stats                             │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 📸 VIEW SAVED IMAGES                                                         │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  Open folder:       cd server\footage                                        │
+│                                                                              │
+│  List all:          dir *.jpg                                                │
+│                                                                              │
+│  List latest 10:    dir *.jpg | Select-Object -Last 10                      │
+│                                                                              │
+│  Count total:       (Get-ChildItem *.jpg).Count                             │
+│                                                                              │
+│  Open latest:       ii (Get-ChildItem *.jpg | Sort LastWriteTime -Desc)[0]  │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 🧪 TESTING                                                                   │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  Test camera:       cd server && python test_camera.py                      │
+│                                                                              │
+│  Test detection:    cd server && python test_multi_detection.py             │
+│                     (Shows live window - press 's' to save, 'q' to quit)    │
+│                                                                              │
+│  View changes:      cd server && python before_after_comparison.py          │
+│                                                                              │
+│  Ping ESP32:        ping 192.168.4.1                                         │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ ⚙️ CONFIGURATION                                                             │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  Change ESP32 IP:      Edit server/main.py line 17                          │
+│                        ESP32_CAM_IP = "192.168.4.1"                          │
+│                                                                              │
+│  Adjust detection:     Edit server/main.py line ~181                        │
+│                        conf=0.15  (lower = more detections)                 │
+│                        iou=0.3    (lower = allow overlap)                   │
+│                        max_det=300 (higher = more objects)                  │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 🐛 TROUBLESHOOTING                                                           │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  No camera feed?       • ESP32-CAM powered on?                              │
+│                        • Connected to ESP32-CAM WiFi?                        │
+│                        • Can ping 192.168.4.1?                               │
+│                                                                              │
+│  No detections?        • Check: "✅ YOLO model loaded" in Python logs       │
+│                        • Good lighting?                                      │
+│                        • Objects clearly visible?                            │
+│                                                                              │
+│  Port already used?    • Get-Process python | Stop-Process -Force           │
+│                        • Get-Process node | Stop-Process -Force             │
+│                                                                              │
+│  Missing modules?      • pip install fastapi uvicorn ultralytics ...        │
+│                        • npm install                                         │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 📚 DOCUMENTATION                                                             │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  README.md                        - Overview & quick start                  │
+│  HOW_TO_START.md                  - Complete startup guide                  │
+│  SYSTEM_STATUS.md                 - Current status & evidence               │
+│  MULTI_OBJECT_DETECTION_FIX.md    - Detection improvements                  │
+│  TROUBLESHOOTING.md               - Common problems & solutions             │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 🎯 KEY FEATURES                                                              │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  ✅ Detects ALL objects in frame (not just 1!)                              │
+│  ✅ Labels everything as "car" (as requested)                               │
+│  ✅ Green bounding boxes (3px thick, easy to see)                           │
+│  ✅ Auto-saves every detection to footage/                                  │
+│  ✅ Real-time web dashboard with live stats                                 │
+│  ✅ Aggressive detection (conf=0.15, iou=0.3, max=300)                      │
+│  ✅ Handles overlapping objects separately                                  │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────────────────┐
+│ 🌐 URLS                                                                      │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                              │
+│  Web Interface:    http://localhost:3000                                    │
+│  API Server:       http://localhost:8000                                    │
+│  API Stats:        http://localhost:8000/stats                              │
+│  Video Feed:       http://localhost:8000/video_feed                         │
+│                                                                              │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                          HAPPY DETECTING! 🚗📦☕📱✋                          ║
+╚══════════════════════════════════════════════════════════════════════════════╝
