@@ -1,24 +1,32 @@
-# smart-traffic-beacon-system
+# Smart Traffic Beacon System
 
-`smart-traffic-beacon-system` is a traffic-monitoring project that combines a Vite-based dashboard with supporting files for object detection, hardware integration, and deployment notes.
+A hybrid monitoring project that combines a modern dashboard, object detection, and hardware integration into a traffic-focused control prototype.
 
-## Overview
+## Why It Feels Bigger Than A Typical Demo
 
-The repository is organized around a web frontend plus project documentation and assets for a smart traffic beacon workflow, including object detection and hardware-side setup.
+`smart-traffic-beacon-system` is more than a front-end mockup. It sits at the intersection of monitoring, detection, and physical-world integration, with enough docs and assets to feel like a real deployment-minded prototype.
+
+## What It Does
+
+- visualizes live traffic-system status in a React dashboard
+- connects to a backend expected at `http://localhost:8000`
+- tracks car count, beacon distance, recording state, and connection health
+- ships with extensive supporting notes for deployment, wiring, troubleshooting, and hardware behavior
 
 ## Project Structure
 
 ```text
 smart-traffic-beacon-system/
 |-- App.tsx
-|-- index.html
 |-- index.tsx
-|-- types.ts
-|-- metadata.json
+|-- index.html
 |-- package.json
 |-- requirements.txt
-|-- *.md guides
+|-- vite.config.ts
+|-- types.ts
+|-- metadata.json
 |-- yolov8n.pt
+|-- *.md setup and wiring guides
 `-- README.md
 ```
 
@@ -26,29 +34,32 @@ smart-traffic-beacon-system/
 
 - Node.js 18+
 - npm
-- Python environment if you plan to use the Python-side utilities described in the docs
+- Python environment if you want to use the Python-side pieces documented in the repo
+- optional connected hardware for the full system workflow
 
 ## Installation
+
+Frontend dependencies:
 
 ```bash
 npm install
 ```
 
-If you need the Python-side dependencies described by the project:
+Python-side dependencies if needed:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Running The Project
+## Run Locally
 
-Start the frontend locally:
+Start the frontend:
 
 ```bash
 npm run dev
 ```
 
-Create a production build:
+Build for production:
 
 ```bash
 npm run build
@@ -62,7 +73,11 @@ npm run preview
 
 ## How It Works
 
-- `App.tsx`, `index.tsx`, and `index.html` define the dashboard frontend
-- project markdown files document hardware integration, deployment, troubleshooting, and wiring
-- `yolov8n.pt` is included for object-detection related workflows described by the project
-- `metadata.json` and `types.ts` support the frontend configuration and typing layer
+- `App.tsx` polls the backend for system stats and renders connection-aware status cards and a live feed surface.
+- the frontend expects a Python service at `http://localhost:8000` for telemetry and video.
+- the large set of markdown guides captures the operational side: deployment, beacon behavior, LED logic, camera setup, and troubleshooting.
+- `yolov8n.pt` anchors the detection side of the workflow.
+
+## Why Someone Would Open This Repo
+
+It is the kind of project that attracts builders interested in the bridge between dashboards and devices: not just what the interface looks like, but what the system is sensing in the world.
